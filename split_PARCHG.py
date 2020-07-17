@@ -36,7 +36,12 @@ with open(file_path_PARCHG) as f:
                 block_lists.append(tmp_block)
                 add_block = False
         else:
-            tmp_line = [float(x) for x in sline]
+            tmp_line = []
+            for i, val in enumerate(sline):
+                if val[0]=='*':
+                    tmp_line.append((float(sline[i-1])+float(sline[i+1]))/2.)
+                else:
+                    tmp_line.append(float(val))
             tmp_block.append(tmp_line)
     block_lists.append(tmp_block)
     block1_float = block_lists[0]
