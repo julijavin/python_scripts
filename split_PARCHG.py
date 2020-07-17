@@ -39,7 +39,12 @@ with open(file_path_PARCHG) as f:
             tmp_line = []
             for i, val in enumerate(sline):
                 if val[0]=='*':
-                    tmp_line.append((float(sline[i-1])+float(sline[i+1]))/2.)
+                    if i>0 and i<(len(sline)-1):
+                        tmp_line.append((float(sline[i-1])+float(sline[i+1]))/2.)
+                    elif i==0:
+                        tmp_line.append(float(sline[1]))
+                    elif i==(len(sline)-1):
+                        tmp_line.append(float(sline[i-1]))
                 else:
                     tmp_line.append(float(val))
             tmp_block.append(tmp_line)
